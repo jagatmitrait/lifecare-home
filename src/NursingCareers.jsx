@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Briefcase, CheckCircle2, FileText, Users } from 'lucide-react';
 import LegalLinks from './components/LegalLinks';
+import { API_BASE } from './config/api.js';
 
 const MAX_RESUME_SIZE = 10 * 1024 * 1024;
 
@@ -49,7 +50,7 @@ export default function NursingCareers() {
       fd.append('agree', form.agree ? 'true' : 'false');
       fd.append('resume', resume);
 
-      const res = await fetch('/api/forms/careers/apply', {
+      const res = await fetch(`${API_BASE}/forms/careers/apply`, {
         method: 'POST',
         body: fd,
         signal: controller.signal,
